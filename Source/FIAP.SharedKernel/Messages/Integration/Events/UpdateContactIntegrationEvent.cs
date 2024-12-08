@@ -2,9 +2,9 @@
 
 namespace FIAP.SharedKernel.Messages.Integration.Events
 {
-    public class DeleteContactIntegrationEvent : IntegrationEvent
+    public class UpdateContactIntegrationEvent : IntegrationEvent
     {
         public Guid ContactId { get; init; }
-        public Contact Contact { get; set; }
+        public Contact Contact { get; init; }
     }
 }
