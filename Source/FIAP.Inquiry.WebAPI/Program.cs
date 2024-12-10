@@ -1,8 +1,6 @@
-using FIAP.Contacts.Application.Contacts.Models;
+using FIAP.Inquiry.Application.Commands;
+using FIAP.Inquiry.Application.Handlers;
 using FIAP.MessageBus;
-using FIAP.Modification.Application.Commands;
-using FIAP.Modification.Application.Handlers;
-using FIAP.SharedKernel.DTO;
 using FIAP.SharedKernel.Mediator;
 using MassTransit;
 using MediatR;
@@ -10,11 +8,13 @@ using Microsoft.AspNetCore.Http.HttpResults;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IMediatorHandler, MediatorHandler>();
-builder.Services.AddScoped<IRequestHandler<UpdateContactCommand, FluentValidation.Results.ValidationResult>, UpdateContactCommandHandler>();
+builder.Services.AddScoped<IRequestHandler<InquiryContactCommand, FluentValidation.Results.ValidationResult>, InquiryContactCommandHandler>();
 builder.Services.AddScoped<IMessageBus, MessageBus>();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
@@ -45,23 +45,15 @@ app.UseHttpsRedirection();
 var endpointGroup = app
     .MapGroup("api/contacts");
 
-endpointGroup.MapPut("/{contactId:guid}", async (Guid contactId, UpdateContactInput contact, IMediatorHandler mediator) =>
+endpointGroup.MapPut("/{phoneCode:int}", async (int phoneCode, IMediatorHandler mediator) =>
 {
-    var result = await mediator.SendCommand(new UpdateContactCommand
+    var result = await mediator.SendCommand(new InquiryContactCommand
     {
-        ContactId = contactId,
-        Contact = new ContactDTO
-        {
-            Id = contactId,
-            Email = contact.Email,
-            Name = contact.Name,
-            PhoneCode = contact.PhoneCode,
-            PhoneNumber = contact.PhoneNumber,
-        }
+        PhoneCode = phoneCode,
     });
 
     if (result.IsValid)
-        return Results.Accepted(value: "Contanct is being updated...");
+        return Results.Accepted(value: "contact is being picked up...");
 
 
     return Results.BadRequest(result.Errors);

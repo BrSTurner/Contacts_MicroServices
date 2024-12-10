@@ -1,6 +1,5 @@
 ﻿using FIAP.DatabaseManagement.Context;
 using FIAP.DatabaseManagement.Repositories;
-using FIAP.SharedKernel.DomainObjects;
 using FIAP.SharedKernel.Entities;
 using Microsoft.EntityFrameworkCore;
 

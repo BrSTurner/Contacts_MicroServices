@@ -1,0 +1,6 @@
+@FIAP.Inquiry.WebAPI_HostAddress = http://localhost:5284
+
+GET {{FIAP.Inquiry.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
