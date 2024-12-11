@@ -1,7 +1,6 @@
 ﻿using FIAP.SharedKernel.Messages;
 using FluentValidation.Results;
 using MediatR;
-using System.Threading.Tasks;
 
 namespace FIAP.SharedKernel.Mediator
 {
@@ -15,6 +14,11 @@ namespace FIAP.SharedKernel.Mediator
         }
 
         public async Task<ValidationResult> SendCommand<T>(T command) where T : Command
+        {
+            return await _mediator.Send(command);
+        }
+
+        public async Task<TResult> SendCommand<TRequest, TResult>(TRequest command) where TRequest : CommandResult<TResult>
         {
             return await _mediator.Send(command);
         }

@@ -16,7 +16,10 @@ builder.Services.AddMassTransit(x =>
 {
     x.AddConsumer<PersistContactConsumer>();
     x.AddConsumer<QueryByEmailOrPhoneConsumer>();
+    x.AddConsumer<QueryByPhoneCodeConsumer>();
+    x.AddConsumer<UpdateContactConsumer>();
     x.AddConsumer<QueryByIdConsumer>();
+    x.AddConsumer<GetAllContactsConsumer>();
     x.AddConsumer<DeleteContactConsumer>();
 
     x.UsingRabbitMq((context, cfg) =>
