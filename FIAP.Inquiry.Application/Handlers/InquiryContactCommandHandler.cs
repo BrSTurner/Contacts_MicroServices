@@ -1,14 +1,14 @@
 ﻿using FIAP.Inquiry.Application.Commands;
 using FIAP.MessageBus;
+using FIAP.SharedKernel.Entities;
 using FIAP.SharedKernel.Mediator;
 using FIAP.SharedKernel.Messages.Integration.Events;
 using FIAP.SharedKernel.Messages.Integration.Responses;
-using FluentValidation.Results;
 using MediatR;
 
 namespace FIAP.Inquiry.Application.Handlers
 {
-    public class InquiryContactCommandHandler : CommandHandler, IRequestHandler<InquiryContactCommand, ValidationResult>
+    public class InquiryContactCommandHandler : CommandHandler, IRequestHandler<InquiryContactCommand, List<Contact?>>
     {
         private readonly IMessageBus _bus;
 
@@ -17,17 +17,17 @@ namespace FIAP.Inquiry.Application.Handlers
             _bus = bus;
         }
 
-        public async Task<ValidationResult> Handle(InquiryContactCommand request, CancellationToken cancellationToken)
+        public async Task<List<Contact?>> Handle(InquiryContactCommand request, CancellationToken cancellationToken)
         {
             if (!request.IsValid())
-                return request.ValidationResult;
+                return [];
 
-            var result = await _bus.RequestAsync<QueryContactByPhoneCodeIntegrationEvent, QueryContactResponse>(new QueryContactByPhoneCodeIntegrationEvent
+            var result = await _bus.RequestAsync<QueryContactByPhoneCodeIntegrationEvent, QueryContactsResponse>(new QueryContactByPhoneCodeIntegrationEvent
             {
                 PhoneCode = request.PhoneCode,
             });
 
-            return ValidationResult;
+            return result.Contacts;
         }
     }
 }

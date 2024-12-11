@@ -14,10 +14,18 @@ namespace FIAP.DatabaseManagement.Contacts.Repositories
 
         public Task<Contact?> GetByEmailOrPhoneNumber(string email, int phoneCode, string phoneNumber)
         {
-            return _entity.FirstOrDefaultAsync(x =>
+            var teste = _entity.FirstOrDefaultAsync(x =>
                 x.Email.Address.Equals(email) ||
                 x.PhoneNumber.Code.Equals(phoneCode) &&
                 x.PhoneNumber.Number.Equals(phoneNumber));
+            return teste;
+        }
+
+        public Task<List<Contact>?> GetByPhoneCode(int phoneCode)
+        {
+            var teste = _entity.Where(x =>
+               x.PhoneNumber.Code.Equals(phoneCode)).ToListAsync();
+            return teste;
         }
     }
 }

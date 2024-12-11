@@ -1,6 +1,7 @@
 using FIAP.Inquiry.Application.Commands;
 using FIAP.Inquiry.Application.Handlers;
 using FIAP.MessageBus;
+using FIAP.SharedKernel.Entities;
 using FIAP.SharedKernel.Mediator;
 using MassTransit;
 using MediatR;
@@ -14,7 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IMediatorHandler, MediatorHandler>();
-builder.Services.AddScoped<IRequestHandler<InquiryContactCommand, FluentValidation.Results.ValidationResult>, InquiryContactCommandHandler>();
+builder.Services.AddScoped<IRequestHandler<InquiryContactCommand, List<Contact?>>, InquiryContactCommandHandler>();
 builder.Services.AddScoped<IMessageBus, MessageBus>();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
@@ -45,18 +46,14 @@ app.UseHttpsRedirection();
 var endpointGroup = app
     .MapGroup("api/contacts");
 
-endpointGroup.MapPut("/{phoneCode:int}", async (int phoneCode, IMediatorHandler mediator) =>
+endpointGroup.MapGet("/{phoneCode:int}", async (int phoneCode, IMediatorHandler mediator) =>
 {
-    var result = await mediator.SendCommand(new InquiryContactCommand
+    var result = await mediator.SendCommand<InquiryContactCommand, List<Contact?>>(new InquiryContactCommand
     {
         PhoneCode = phoneCode,
     });
 
-    if (result.IsValid)
-        return Results.Accepted(value: "contact is being picked up...");
-
-
-    return Results.BadRequest(result.Errors);
+    return Results.Ok(result);
 })
 .WithTags("Contacts")
 .WithName("Update Contact")
