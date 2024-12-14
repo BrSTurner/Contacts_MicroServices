@@ -8,20 +8,17 @@ using MediatR;
 
 namespace FIAP.Inquiry.Application.Handlers
 {
-    public class InquiryContactCommandHandler : CommandHandler, IRequestHandler<InquiryContactCommand, List<Contact?>>
+    public class InquiryContactByPhoneCodeCommandHandler : CommandHandler, IRequestHandler<InquiryContactByPhoneCodeCommand, List<Contact?>>
     {
         private readonly IMessageBus _bus;
 
-        public InquiryContactCommandHandler(IMessageBus bus)
+        public InquiryContactByPhoneCodeCommandHandler(IMessageBus bus)
         {
             _bus = bus;
         }
 
-        public async Task<List<Contact?>> Handle(InquiryContactCommand request, CancellationToken cancellationToken)
+        public async Task<List<Contact?>> Handle(InquiryContactByPhoneCodeCommand request, CancellationToken cancellationToken)
         {
-            if (!request.IsValid())
-                return [];
-
             var result = await _bus.RequestAsync<QueryContactByPhoneCodeIntegrationEvent, QueryContactsResponse>(new QueryContactByPhoneCodeIntegrationEvent
             {
                 PhoneCode = request.PhoneCode,

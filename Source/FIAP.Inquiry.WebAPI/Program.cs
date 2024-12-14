@@ -15,7 +15,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IMediatorHandler, MediatorHandler>();
-builder.Services.AddScoped<IRequestHandler<InquiryContactCommand, List<Contact?>>, InquiryContactCommandHandler>();
+builder.Services.AddScoped<IRequestHandler<InquiryContactByPhoneCodeCommand, List<Contact?>>, InquiryContactByPhoneCodeCommandHandler>();
+builder.Services.AddScoped<IRequestHandler<InquiryAllContactsCommand, List<Contact?>>, InquiryAllContactsCommandHandler>();
 builder.Services.AddScoped<IMessageBus, MessageBus>();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
@@ -48,7 +49,7 @@ var endpointGroup = app
 
 endpointGroup.MapGet("/{phoneCode:int}", async (int phoneCode, IMediatorHandler mediator) =>
 {
-    var result = await mediator.SendCommand<InquiryContactCommand, List<Contact?>>(new InquiryContactCommand
+    var result = await mediator.SendCommand<InquiryContactByPhoneCodeCommand, List<Contact?>>(new InquiryContactByPhoneCodeCommand
     {
         PhoneCode = phoneCode,
     });
@@ -56,9 +57,20 @@ endpointGroup.MapGet("/{phoneCode:int}", async (int phoneCode, IMediatorHandler 
     return Results.Ok(result);
 })
 .WithTags("Contacts")
-.WithName("Update Contact")
+.WithName("Get Contact By Phone Code")
 .Produces<Accepted>()
 .Produces<BadRequest>();
+
+endpointGroup.MapGet(string.Empty, async (IMediatorHandler mediator) =>
+{
+    var result = await mediator.SendCommand<InquiryAllContactsCommand, List<Contact?>>(new InquiryAllContactsCommand {    });
+
+    return Results.Ok(result);
+})
+.WithTags("Contacts")
+.WithName("Get All Contacts")
+.Produces<Accepted>()
+.Produces<NoContent>();
 
 app.Run();
 
