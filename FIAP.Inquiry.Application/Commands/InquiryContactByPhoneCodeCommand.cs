@@ -5,7 +5,7 @@ using FluentValidation.Results;
 
 namespace FIAP.Inquiry.Application.Commands
 {
-    public class InquiryContactCommand : CommandResult<List<Contact?>>
+    public class InquiryContactByPhoneCodeCommand : CommandResult<List<Contact?>>
     {
         public int PhoneCode { get; set; }
 

@@ -2,11 +2,6 @@
 using FIAP.SharedKernel.Messages.Integration.Events;
 using FIAP.SharedKernel.Messages.Integration.Responses;
 using MassTransit;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FIAP.DatabaseManagement.WS.Contacts.Consumers
 {

@@ -6,7 +6,7 @@ using MassTransit;
 
 namespace FIAP.DatabaseManagement.WS.Contacts.Consumers
 {
-    public class GetAllContactsConsumer : IConsumer<CreateContactIntegrationEvent>
+    public class GetAllContactsConsumer : IConsumer<QueryAllContactsIntegrationEvent>
     {
         private readonly IContactRepository _repository;
         private readonly IUnitOfWork _unitOfWork;
@@ -18,11 +18,11 @@ namespace FIAP.DatabaseManagement.WS.Contacts.Consumers
             _unitOfWork = unitOfWork;
         }
 
-        public async Task Consume(ConsumeContext<CreateContactIntegrationEvent> context)
+        public async Task Consume(ConsumeContext<QueryAllContactsIntegrationEvent> context)
         {
             var command = context.Message;
 
-            if (command == null || command?.Contact == null)
+            if (command == null)
                 throw new ArgumentNullException(nameof(command));
 
             var contacs = _repository.GetAllAsync();
