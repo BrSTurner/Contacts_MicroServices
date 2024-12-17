@@ -12,7 +12,7 @@ namespace FIAP.DatabaseManagement.Contacts.Queries
         {
             _context = context;
         }
-
+        
         public async Task<List<ContactDTO>> GetByPhoneCodeAsync(int phoneCode)
         {
             var sql = "SELECT * FROM Contacts WHERE PhoneCode = @PhoneCode";

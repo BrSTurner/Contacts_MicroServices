@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\FIAP.Inquiry.Application\FIAP.Inquiry.Application.csproj" />
+    <ProjectReference Include="..\FIAP.Inquiry.Application\FIAP.Inquiry.Application.csproj" />
     <ProjectReference Include="..\FIAP.SharedKernel\FIAP.SharedKernel.csproj" />
   </ItemGroup>
 

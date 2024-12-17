@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Source\FIAP.MessageBus\FIAP.MessageBus.csproj" />
-    <ProjectReference Include="..\Source\FIAP.SharedKernel\FIAP.SharedKernel.csproj" />
+    <ProjectReference Include="..\FIAP.MessageBus\FIAP.MessageBus.csproj" />
+    <ProjectReference Include="..\FIAP.SharedKernel\FIAP.SharedKernel.csproj" />
   </ItemGroup>
 
 </Project>

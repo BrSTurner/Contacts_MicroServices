@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FIAP.MessageBus\FIAP.MessageBus.csproj" />
+    <ProjectReference Include="..\FIAP.SharedKernel\FIAP.SharedKernel.csproj" />
+  </ItemGroup>
+
 </Project>

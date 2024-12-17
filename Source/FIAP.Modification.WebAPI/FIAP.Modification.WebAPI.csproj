@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\FIAP.Modification.Application\FIAP.Modification.Application.csproj" />
     <ProjectReference Include="..\FIAP.MessageBus\FIAP.MessageBus.csproj" />
+    <ProjectReference Include="..\FIAP.Modification.Application\FIAP.Modification.Application.csproj" />
     <ProjectReference Include="..\FIAP.SharedKernel\FIAP.SharedKernel.csproj" />
   </ItemGroup>
 
