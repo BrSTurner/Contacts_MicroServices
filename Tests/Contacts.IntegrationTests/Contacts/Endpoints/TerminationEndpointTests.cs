@@ -37,7 +37,7 @@ namespace Contacts.IntegrationTests.Contacts.Endpoints
 
 
             Assert.Equal(HttpStatusCode.Accepted, response.StatusCode);
-            message.ShouldBe("Contanct is being deleted...");
+            message.ShouldBe("Contact is being deleted...");
         }
     }
 }

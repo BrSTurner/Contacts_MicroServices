@@ -48,7 +48,7 @@ namespace Contacts.IntegrationTests.Contacts.Endpoints
 
 
             Assert.Equal(HttpStatusCode.Accepted, response.StatusCode);
-            message.ShouldBe("Contanct is being updated...");
+            message.ShouldBe("Contact is being updated...");
         }
 
     }
