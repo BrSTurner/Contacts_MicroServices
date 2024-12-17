@@ -1,5 +1,4 @@
 ﻿using FIAP.DatabaseManagement.Contacts.Queries;
-using FIAP.DatabaseManagement.Contacts.Repositories;
 using FIAP.SharedKernel.Messages.Integration.Events;
 using FIAP.SharedKernel.Messages.Integration.Responses;
 using MassTransit;

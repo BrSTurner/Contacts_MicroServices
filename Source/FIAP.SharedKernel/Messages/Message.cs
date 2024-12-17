@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FIAP.SharedKernel.Messages
+﻿namespace FIAP.SharedKernel.Messages
 {
     public abstract class Message
     {
