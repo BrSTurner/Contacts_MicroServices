@@ -31,7 +31,7 @@ namespace FIAP.Modification.Application.Handlers
                 return ValidationResult;
             }
 
-            contact.Update(Contact.Create(request.Contact.Name, request.Contact.Email, request.Contact.PhoneCode, request.Contact.PhoneNumber));
+            contact.Update(request.Name, request.Email, request.PhoneCode, request.PhoneNumber);
 
             await _bus.PublishAsync(new UpdateContactIntegrationEvent
             {
@@ -42,11 +42,11 @@ namespace FIAP.Modification.Application.Handlers
             return ValidationResult;
         }
 
-        public async Task<Contact?> GetContactToUpdate(UpdateContactCommand request)
+        private async Task<Contact?> GetContactToUpdate(UpdateContactCommand request)
         {
             var result = await _bus.RequestAsync<QueryContactByIdIntegrationEvent, QueryContactResponse>(new QueryContactByIdIntegrationEvent
             {
-                ContactId = request.ContactId,
+                ContactId = request.Id,
             });
 
             return result.Contact;

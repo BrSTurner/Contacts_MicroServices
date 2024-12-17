@@ -65,4 +65,5 @@ endpointGroup.MapPost(string.Empty, async (CreateContactInput request, IMediator
 .Produces<BadRequest>();
 
 app.Run();
-public partial class Program { }
+
+public partial class RegistrationProgram { }

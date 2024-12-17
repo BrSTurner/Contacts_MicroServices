@@ -35,12 +35,12 @@ builder.Services.AddMassTransit(x =>
 });
 
 builder.Services.AddSingleton<IMessageBus, MessageBus>();
+builder.Services.AddInfrastructure(builder.Configuration, true);
 
-builder.Services.AddScoped<IContactRepository, ContactRepository>();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IContactQueries, ContactQueries>();
-builder.Services.AddDbContext<FIAPContext>(c => c.UseInMemoryDatabase("FIAP_Contacts"));
-builder.Services.AddInfrastructure(builder.Configuration);
+//builder.Services.AddScoped<IContactRepository, ContactRepository>();
+//builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+//builder.Services.AddScoped<IContactQueries, ContactQueries>();
+//builder.Services.AddDbContext<FIAPContext>(c => c.UseInMemoryDatabase("FIAP_Contacts"));
 //builder.Services.AddDbContext<FIAPContext>(c => c.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
 builder.Services.AddHostedService<PersistanceWorker>();

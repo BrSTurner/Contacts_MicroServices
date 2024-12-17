@@ -2,7 +2,6 @@ using FIAP.Contacts.Application.Contacts.Models;
 using FIAP.MessageBus;
 using FIAP.Modification.Application.Commands;
 using FIAP.Modification.Application.Handlers;
-using FIAP.SharedKernel.DTO;
 using FIAP.SharedKernel.Mediator;
 using MassTransit;
 using MediatR;
@@ -33,7 +32,6 @@ builder.Services.AddMassTransit(x =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -49,15 +47,11 @@ endpointGroup.MapPut("/{contactId:guid}", async (Guid contactId, UpdateContactIn
 {
     var result = await mediator.SendCommand(new UpdateContactCommand
     {
-        ContactId = contactId,
-        Contact = new ContactDTO
-        {
-            Id = contactId,
-            Email = contact.Email,
-            Name = contact.Name,
-            PhoneCode = contact.PhoneCode,
-            PhoneNumber = contact.PhoneNumber,
-        }
+        Id = contactId,
+        Email = contact.Email,
+        Name = contact.Name,
+        PhoneCode = contact.PhoneCode,
+        PhoneNumber = contact.PhoneNumber 
     });
 
     if (result.IsValid)
@@ -73,4 +67,4 @@ endpointGroup.MapPut("/{contactId:guid}", async (Guid contactId, UpdateContactIn
 
 app.Run();
 
-public partial class Program { }
+public partial class UpdateProgram { }

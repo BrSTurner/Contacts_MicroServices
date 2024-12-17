@@ -19,7 +19,7 @@ namespace FIAP.Inquiry.Application.Handlers
 
         public async Task<List<Contact?>> Handle(InquiryAllContactsCommand request, CancellationToken cancellationToken)
         {
-            var result = await _bus.RequestAsync<QueryAllContactsIntegrationEvent, QueryContactsResponse>(new QueryAllContactsIntegrationEvent { });
+            var result = await _bus.RequestAsync<QueryAllContactsIntegrationEvent, QueryContactsResponse>(new ());
 
             return result.Contacts;
         }

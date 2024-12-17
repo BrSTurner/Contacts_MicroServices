@@ -5,5 +5,6 @@ namespace FIAP.Inquiry.Application.Commands
 {
     public class InquiryAllContactsCommand : CommandResult<List<Contact?>>
     {
+        public override bool IsValid() => true;
     }
 }

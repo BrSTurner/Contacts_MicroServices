@@ -1,13 +1,17 @@
-﻿using FIAP.Registration.Application.Commands;
+﻿using FIAP.Modification.Application.Commands;
 using FIAP.SharedKernel.Constants;
 using FluentValidation;
 
-namespace FIAP.Contacts.Application.Contacts.Validations
+namespace FIAP.Modification.Application.Validation
 {
-    public class CreateContactValidation : AbstractValidator<CreateContactCommand>
+    public class UpdateContactValidation : AbstractValidator<UpdateContactCommand>
     {
-        public CreateContactValidation() 
+        public UpdateContactValidation()
         {
+            RuleFor(x => x.Id)
+                .NotEmpty()
+                .WithMessage("Id must be correctly filled");
+
             RuleFor(x => x.Name)
                 .NotEmpty()
                 .WithMessage("Name must be correctly filled");

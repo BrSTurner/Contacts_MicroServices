@@ -61,4 +61,4 @@ endpointGroup.MapDelete("{id:guid}", async (Guid id, IMediatorHandler mediator) 
 
 app.Run();
 
-public partial class Program { }
+public partial class TerminationProgram { }
