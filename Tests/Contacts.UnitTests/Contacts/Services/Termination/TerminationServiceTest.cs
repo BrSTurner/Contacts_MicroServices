@@ -1,17 +1,10 @@
 ﻿using FIAP.MessageBus;
-using FIAP.Modification.Application.Commands;
-using FIAP.Modification.Application.Handlers;
 using FIAP.SharedKernel.Messages.Integration.Events;
 using FIAP.SharedKernel.Messages.Integration.Responses;
 using FIAP.Termination.Application.Commands;
 using FIAP.Termination.Application.Handlers;
 using NSubstitute;
 using Shouldly;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Contacts.UnitTests.Contacts.Services.Termination
 {

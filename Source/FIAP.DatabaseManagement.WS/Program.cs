@@ -1,14 +1,8 @@
-using FIAP.DatabaseManagement.Contacts.Queries;
-using FIAP.DatabaseManagement.Contacts.Repositories;
-using FIAP.DatabaseManagement.Context;
 using FIAP.DatabaseManagement.Extensions;
-using FIAP.DatabaseManagement.UoW;
 using FIAP.DatabaseManagement.WS.Contacts.Consumers;
 using FIAP.DatabaseManagement.WS.Contacts.Workers;
 using FIAP.MessageBus;
-using FIAP.SharedKernel.UoW;
 using MassTransit;
-using Microsoft.EntityFrameworkCore;
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -36,13 +30,6 @@ builder.Services.AddMassTransit(x =>
 
 builder.Services.AddSingleton<IMessageBus, MessageBus>();
 builder.Services.AddInfrastructure(builder.Configuration, true);
-
-//builder.Services.AddScoped<IContactRepository, ContactRepository>();
-//builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-//builder.Services.AddScoped<IContactQueries, ContactQueries>();
-//builder.Services.AddDbContext<FIAPContext>(c => c.UseInMemoryDatabase("FIAP_Contacts"));
-//builder.Services.AddDbContext<FIAPContext>(c => c.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
-
 builder.Services.AddHostedService<PersistanceWorker>();
 
 var host = builder.Build();

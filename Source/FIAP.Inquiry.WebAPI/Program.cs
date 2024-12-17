@@ -7,6 +7,7 @@ using FIAP.SharedKernel.Mediator;
 using MassTransit;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Prometheus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +42,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseHttpMetrics();
+app.UseRouting();
+app.UseEndpoints(endpoints => endpoints.MapMetrics());
 
 var endpointGroup = app
     .MapGroup("api/contacts");

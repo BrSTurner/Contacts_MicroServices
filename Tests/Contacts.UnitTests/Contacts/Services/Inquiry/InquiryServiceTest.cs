@@ -1,20 +1,11 @@
-﻿using Bogus;
-using FIAP.Inquiry.Application.Commands;
+﻿using FIAP.Inquiry.Application.Commands;
 using FIAP.Inquiry.Application.Handlers;
 using FIAP.MessageBus;
-using FIAP.Modification.Application.Commands;
-using FIAP.Modification.Application.Handlers;
 using FIAP.SharedKernel.DTO;
 using FIAP.SharedKernel.Messages.Integration.Events;
 using FIAP.SharedKernel.Messages.Integration.Responses;
-using MassTransit;
 using NSubstitute;
 using Shouldly;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Contacts.UnitTests.Contacts.Services.Inquiry
 {

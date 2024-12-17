@@ -1,7 +1,6 @@
 ﻿using FIAP.Contacts.IntegrationTests.Base;
 using FIAP.Contacts.IntegrationTests.Mock;
 using FIAP.SharedKernel.DTO;
-using Shouldly;
 using System.Net;
 using System.Net.Http.Json;
 
