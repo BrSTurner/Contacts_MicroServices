@@ -59,7 +59,7 @@ endpointGroup.MapPut("/{contactId:guid}", async (Guid contactId, UpdateContactIn
     });
 
     if (result.IsValid)
-        return Results.Accepted(value: "Contanct is being updated...");
+        return Results.Accepted(value: "Contact is being updated...");
 
 
     return Results.BadRequest(result.Errors);

@@ -54,7 +54,7 @@ endpointGroup.MapDelete("{id:guid}", async (Guid id, IMediatorHandler mediator) 
     });
 
     if (result.IsValid)
-        return Results.Accepted(value: "Contanct is being deleted...");
+        return Results.Accepted(value: "Contact is being deleted...");
 
     return Results.BadRequest(result.Errors);
 })
