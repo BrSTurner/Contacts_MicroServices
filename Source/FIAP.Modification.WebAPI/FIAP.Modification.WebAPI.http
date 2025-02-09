@@ -1,0 +1,6 @@
+@FIAP.Modification.WebAPI_HostAddress = http://localhost:5085
+
+GET {{FIAP.Modification.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
