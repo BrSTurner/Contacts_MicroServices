@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: termination-application-service
+spec:
+  type: ClusterIP
+  selector:
+    app: termination-application
+  ports:
+    - protocol: TCP
+      port: 5001
+      targetPort: 5001

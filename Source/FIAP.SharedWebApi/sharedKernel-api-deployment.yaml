@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shared-kernel-api
+spec:
+  replicas: 3  # Número de réplicas desejadas
+  selector:
+    matchLabels:
+      app: shared-kernel-api
+  template:
+    metadata:
+      labels:
+        app: shared-kernel-api
+    spec:
+      containers:
+      - name: shared-kernel-api
+        image: shared-kernel-api:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
