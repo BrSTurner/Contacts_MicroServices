@@ -17,6 +17,7 @@ spec:
       containers:
         - name: modification-application
           image: modification-service:latest
+          imagePullPolicy: Never
           ports:
             - containerPort: 5001
           env:

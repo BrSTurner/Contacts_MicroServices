@@ -17,6 +17,7 @@ spec:
       containers:
         - name: registration-application
           image: registration-service:latest
+          imagePullPolicy: Never
           ports:
             - containerPort: 5001
           env:

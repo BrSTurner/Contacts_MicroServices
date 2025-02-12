@@ -17,6 +17,7 @@ spec:
       containers:
         - name: termination-application
           image: termination-service:latest
+          imagePullPolicy: Never
           ports:
             - containerPort: 5001
           env:
