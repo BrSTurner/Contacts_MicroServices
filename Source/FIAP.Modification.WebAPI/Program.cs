@@ -6,12 +6,20 @@ using FIAP.SharedKernel.Mediator;
 using MassTransit;
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.OpenApi.Models;
 using Prometheus;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Modification API",
+        Version = "v1"
+    });
+});
 builder.Configuration.AddEnvironmentVariables();
 
 builder.Services.AddScoped<IMediatorHandler, MediatorHandler>();
@@ -37,18 +45,24 @@ builder.WebHost.ConfigureKestrel(options =>
     options.ListenAnyIP(8081);
 });
 
+builder.Services.AddHealthChecks();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Modification API v1");
+    });
 }
 
 app.UseHttpsRedirection();
 app.UseHttpMetrics();
 app.UseRouting();
 app.UseEndpoints(endpoints => endpoints.MapMetrics());
+app.UseHealthChecks("/health");
 
 var endpointGroup = app
     .MapGroup("api/contacts");
