@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: termination-application
+  labels:
+    app: termination-application
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: termination-application
+  template:
+    metadata:
+      labels:
+        app: termination-application
+    spec:
+      containers:
+        - name: termination-application
+          image: termination-service:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5001
+          env:
+            - name: OTHER_SERVICE_URL
+              value: "http://other-service:5002"

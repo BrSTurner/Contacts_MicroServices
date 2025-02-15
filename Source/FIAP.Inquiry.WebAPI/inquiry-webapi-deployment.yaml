@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inquiry-webapi
+  labels:
+    app: inquiry-webapi
+spec:
+  replicas: 3  # Número de réplicas desejadas
+  selector:
+    matchLabels:
+      app: inquiry-webapi
+  template:
+    metadata:
+      labels:
+        app: inquiry-webapi
+    spec:
+      containers:
+      - name: inquiry-webapi
+        image: inquiry-service:latest
+        imagePullPolicy: Never
+        ports:
+          - containerPort: 5000
+        env:
+        - name: inquiry_APP_URL
+          value: "http://inquiry-application-service:5001"

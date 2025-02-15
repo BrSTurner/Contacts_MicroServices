@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: termination-webapi
+  labels:
+    app: termination-webapi
+spec:
+  replicas: 3  # Número de réplicas desejadas
+  selector:
+    matchLabels:
+      app: termination-webapi
+  template:
+    metadata:
+      labels:
+        app: termination-webapi
+    spec:
+      containers:
+      - name: termination-webapi
+        image: termination-service:latest
+        imagePullPolicy: Never
+        ports:
+          - containerPort: 5000
+        env:
+        - name: TERMINATION_APP_URL
+          value: "http://termination-application-service:5001"

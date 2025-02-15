@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: registration-webapi
+  labels:
+    app: registration-webapi
+spec:
+  replicas: 3  # Número de réplicas desejadas
+  selector:
+    matchLabels:
+      app: registration-webapi
+  template:
+    metadata:
+      labels:
+        app: registration-webapi
+    spec:
+      containers:
+      - name: registration-webapi
+        image: registration-service:latest
+        imagePullPolicy: Never
+        ports:
+          - containerPort: 5000
+        env:
+        - name: TERMINATION_APP_URL
+          value: "http://termination-application-service:5001"
