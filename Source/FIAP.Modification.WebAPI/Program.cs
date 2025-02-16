@@ -34,7 +34,7 @@ builder.Services.AddMassTransit(x =>
 
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.ListenAnyIP(8081);
+    options.ListenAnyIP(8082);
 });
 
 var app = builder.Build();

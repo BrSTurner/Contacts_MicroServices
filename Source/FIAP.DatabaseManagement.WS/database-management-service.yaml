@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: database-management-service
+spec:
+  selector:
+    app: database-management-service
+  ports:
+  - port: 90
+    targetPort: 8666

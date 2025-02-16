@@ -1,5 +1,3 @@
-#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
@@ -13,6 +11,7 @@ COPY ["Source/FIAP.Inquiry.WebAPI/FIAP.Inquiry.WebAPI.csproj", "Source/FIAP.Inqu
 COPY ["Source/FIAP.Inquiry.Application/FIAP.Inquiry.Application.csproj", "Source/FIAP.Inquiry.Application/"]
 COPY ["Source/FIAP.MessageBus/FIAP.MessageBus.csproj", "Source/FIAP.MessageBus/"]
 COPY ["Source/FIAP.SharedKernel/FIAP.SharedKernel.csproj", "Source/FIAP.SharedKernel/"]
+
 RUN dotnet restore "./Source/FIAP.Inquiry.WebAPI/FIAP.Inquiry.WebAPI.csproj"
 COPY . .
 WORKDIR "/src/Source/FIAP.Inquiry.WebAPI"

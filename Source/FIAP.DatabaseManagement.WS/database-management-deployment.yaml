@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: database-management-service
+  template:
+    metadata:
+      labels:
+        app: database-management-service
+    spec:
+      containers:
+        - name: database-management-service
+          image: database-management-service:latest
+          imagePullPolicy: Never
+          env:
+            - name: RABBITMQ_HOST
+              value: "rabbitmq-service"

@@ -19,7 +19,9 @@ spec:
         image: modification-service:latest
         imagePullPolicy: Never
         ports:
-          - containerPort: 5000
+          - containerPort: 8081
         env:
-        - name: MODIFICATION_APP_URL
-          value: "http://modification-application-service:5001"
+          - name: RABBITMQ_HOST
+            value: "rabbitmq-service"
+          - name: ASPNETCORE_ENVIRONMENT
+            value: "Development"

@@ -7,5 +7,5 @@ spec:
   selector:
     app: termination-webapi
   ports:
-    - port: 80
-      targetPort: 80
+    - port: 84
+      targetPort: 8081
