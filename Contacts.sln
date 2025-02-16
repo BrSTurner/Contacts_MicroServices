@@ -63,13 +63,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebAPI", "WebAPI", "{A53B48
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FIAP.Modification.WebAPI", "Source\FIAP.Modification.WebAPI\FIAP.Modification.WebAPI.csproj", "{AF71B286-9478-496D-B17B-3306E639BD2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FIAP.Inquiry.Application", "Source\FIAP.Inquiry.Application\FIAP.Inquiry.Application.csproj", "{029C5130-A1C3-4E6D-9FE4-18412E1A201A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FIAP.Inquiry.Application", "Source\FIAP.Inquiry.Application\FIAP.Inquiry.Application.csproj", "{029C5130-A1C3-4E6D-9FE4-18412E1A201A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FIAP.Inquiry.WebAPI", "Source\FIAP.Inquiry.WebAPI\FIAP.Inquiry.WebAPI.csproj", "{E495E72D-8BEA-4CAC-9504-37B7048073A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FIAP.Inquiry.WebAPI", "Source\FIAP.Inquiry.WebAPI\FIAP.Inquiry.WebAPI.csproj", "{E495E72D-8BEA-4CAC-9504-37B7048073A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contacts.UnitTests", "Tests\Contacts.UnitTests\Contacts.UnitTests.csproj", "{1F9258F5-C317-477D-8F6C-BF6ED60E4970}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contacts.UnitTests", "Tests\Contacts.UnitTests\Contacts.UnitTests.csproj", "{1F9258F5-C317-477D-8F6C-BF6ED60E4970}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contacts.IntegrationTests", "Tests\Contacts.IntegrationTests\Contacts.IntegrationTests.csproj", "{ED51B371-09BA-44D1-9CD6-FFAFE61E53C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contacts.IntegrationTests", "Tests\Contacts.IntegrationTests\Contacts.IntegrationTests.csproj", "{ED51B371-09BA-44D1-9CD6-FFAFE61E53C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{6C95F805-7D64-4272-B62E-28FB0B2DBF90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FIAP.Gateway.API", "Source\FIAP.Gateway.API\FIAP.Gateway.API.csproj", "{117F1B73-7CD0-41B3-91F4-70BF335473E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -133,6 +137,10 @@ Global
 		{ED51B371-09BA-44D1-9CD6-FFAFE61E53C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED51B371-09BA-44D1-9CD6-FFAFE61E53C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED51B371-09BA-44D1-9CD6-FFAFE61E53C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{117F1B73-7CD0-41B3-91F4-70BF335473E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{117F1B73-7CD0-41B3-91F4-70BF335473E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{117F1B73-7CD0-41B3-91F4-70BF335473E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{117F1B73-7CD0-41B3-91F4-70BF335473E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -170,6 +178,8 @@ Global
 		{E495E72D-8BEA-4CAC-9504-37B7048073A1} = {22DF5C90-199A-40FC-943D-538BDE27FFED}
 		{1F9258F5-C317-477D-8F6C-BF6ED60E4970} = {088E2DC7-95F7-4F55-A34C-CDE1DA94722A}
 		{ED51B371-09BA-44D1-9CD6-FFAFE61E53C5} = {088E2DC7-95F7-4F55-A34C-CDE1DA94722A}
+		{6C95F805-7D64-4272-B62E-28FB0B2DBF90} = {F5C89A7C-04A2-4025-93E0-E7EFF7CBE28B}
+		{117F1B73-7CD0-41B3-91F4-70BF335473E0} = {6C95F805-7D64-4272-B62E-28FB0B2DBF90}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0D4D36EB-A5FD-4D43-A474-5ABA8247FDFB}

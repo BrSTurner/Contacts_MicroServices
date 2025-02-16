@@ -1,0 +1,101 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/contacts",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "registration",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/api/registration",
+      "UpstreamHttpMethod": [ "POST" ],
+      "SwaggerKey": "registration"
+    },
+    {
+      "DownstreamPathTemplate": "/api/contacts/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "termination",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/api/termination/{everything}",
+      "UpstreamHttpMethod": [ "DELETE" ],
+      "SwaggerKey": "termination"
+    },
+    {
+      "DownstreamPathTemplate": "/api/contacts/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "inquiry",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/api/inquiry/{everything}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "SwaggerKey": "inquiry"
+    },
+    {
+      "DownstreamPathTemplate": "/api/contacts/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "modification",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/api/modification/{everything}",
+      "UpstreamHttpMethod": [ "PUT" ],
+      "SwaggerKey": "modification"
+    }
+  ],
+  "SwaggerEndPoints": [
+    //{
+    //  "Key": "registration",
+    //  "Config": {
+    //    "Name": "Registration Service",
+    //    "Version": "v1",
+    //    "Url": "http://registration:8081/swagger/v1/swagger.json"
+    //  }
+    //},
+    //{
+    //  "Key": "termination",
+    //  "Config": {
+    //    "Name": "Termination Service",
+    //    "Version": "v1",
+    //    "Url": "http://termination:8081/swagger/v1/swagger.json"
+    //  }
+    //},
+    //{
+    //  "Key": "inquiry",
+    //  "Config": {
+    //    "Name": "Inquiry Service",
+    //    "Version": "v1",
+    //    "Url": "http://inquiry:8081/swagger/v1/swagger.json"
+    //  }
+    //},
+    //{
+    //  "Key": "modification",
+    //  "Config": {
+    //    "Name": "Modification Service",
+    //    "Version": "v1",
+    //    "Url": "http://modification:8081/swagger/v1/swagger.json"
+    //  }
+    //}
+    {
+      "Key": "gateway",
+      "Config": {
+        "Name": "Aggregated Gateway API",
+        "Version": "v1",
+        "Url": "http://localhost:8500/swagger/aggregated"
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:8500"
+  }
+}
