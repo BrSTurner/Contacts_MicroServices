@@ -6,5 +6,5 @@ spec:
   selector:
     app: database-management-service
   ports:
-  - port: 90
-    targetPort: 8666
+    - port: 90
+      targetPort: 8666
