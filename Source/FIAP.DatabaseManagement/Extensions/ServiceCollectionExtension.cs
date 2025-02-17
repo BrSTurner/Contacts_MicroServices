@@ -20,7 +20,7 @@ namespace FIAP.DatabaseManagement.Extensions
             if(useInMemory)
                 services.AddDbContext<FIAPContext>(c => c.UseInMemoryDatabase("FIAP_Contacts"));
             else
-                services.AddDbContext<FIAPContext>(c => c.UseSqlServer(configuration.GetConnectionString("Default")));
+                services.AddDbContext<FIAPContext>(c => c.UseNpgsql(configuration["POSTGRES_CONNECTION_STRING"]));
 
             return services;
         }

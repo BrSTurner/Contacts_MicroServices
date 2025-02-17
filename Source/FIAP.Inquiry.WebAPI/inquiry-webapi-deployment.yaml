@@ -2,10 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: inquiry-webapi
+  namespace: fiap-contacts
   labels:
     app: inquiry-webapi
 spec:
-  replicas: 3  # Número de réplicas desejadas
+  replicas: 3
   selector:
     matchLabels:
       app: inquiry-webapi
@@ -14,6 +15,14 @@ spec:
       labels:
         app: inquiry-webapi
     spec:
+      initContainers:
+        - name: wait-for-postgres
+          image: busybox
+          command: ['sh', '-c', 'until nc -z postgres-service 5432; do echo waiting for postgres; sleep 2; done;']
+        
+        - name: wait-for-rabbitmq
+          image: busybox
+          command: ['sh', '-c', 'until nc -z rabbitmq-service 5672; do echo waiting for rabbitmq; sleep 2; done;']
       containers:
       - name: inquiry-webapi
         image: inquiry-service:latest
@@ -22,6 +31,22 @@ spec:
           - containerPort: 8081
         env:
           - name: RABBITMQ_HOST
-            value: "rabbitmq-service"
+            valueFrom:
+              configMapKeyRef:
+                name: webapi-config
+                key: RABBITMQ_HOST
+          - name: RABBITMQ_USER
+            valueFrom:
+              configMapKeyRef:
+                name: webapi-config
+                key: RABBITMQ_USER
+          - name: RABBITMQ_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: services-secret
+                key: RABBITMQ_PASSWORD
           - name: ASPNETCORE_ENVIRONMENT
-            value: "Development"
+            valueFrom:
+              configMapKeyRef:
+                name: webapi-config
+                key: ASPNETCORE_ENVIRONMENT

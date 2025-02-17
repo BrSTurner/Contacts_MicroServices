@@ -4,7 +4,7 @@
     {
         public Guid Id { get; init; }
         public DateTime CreatedAt { get; init; }
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         protected Entity()
         {

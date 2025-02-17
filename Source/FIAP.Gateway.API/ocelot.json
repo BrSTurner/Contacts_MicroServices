@@ -53,48 +53,6 @@
       "SwaggerKey": "modification"
     }
   ],
-  "SwaggerEndPoints": [
-    //{
-    //  "Key": "registration",
-    //  "Config": {
-    //    "Name": "Registration Service",
-    //    "Version": "v1",
-    //    "Url": "http://registration:8081/swagger/v1/swagger.json"
-    //  }
-    //},
-    //{
-    //  "Key": "termination",
-    //  "Config": {
-    //    "Name": "Termination Service",
-    //    "Version": "v1",
-    //    "Url": "http://termination:8081/swagger/v1/swagger.json"
-    //  }
-    //},
-    //{
-    //  "Key": "inquiry",
-    //  "Config": {
-    //    "Name": "Inquiry Service",
-    //    "Version": "v1",
-    //    "Url": "http://inquiry:8081/swagger/v1/swagger.json"
-    //  }
-    //},
-    //{
-    //  "Key": "modification",
-    //  "Config": {
-    //    "Name": "Modification Service",
-    //    "Version": "v1",
-    //    "Url": "http://modification:8081/swagger/v1/swagger.json"
-    //  }
-    //}
-    {
-      "Key": "gateway",
-      "Config": {
-        "Name": "Aggregated Gateway API",
-        "Version": "v1",
-        "Url": "http://localhost:8500/swagger/aggregated"
-      }
-    }
-  ],
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:8500"
   }
