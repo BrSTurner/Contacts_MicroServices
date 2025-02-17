@@ -16,16 +16,16 @@ data:
 
       - job_name: 'inquiry-webapi-service'
         static_configs:
-          - targets: ['inquiry-webapi-service.default.svc.cluster.local:82']
+          - targets: ['inquiry-webapi-service.fiap-contacts.svc.cluster.local:82']
 
       - job_name: 'registration-webapi-service'
         static_configs:
-          - targets: ['registration-webapi-service.default.svc.cluster.local:81']
+          - targets: ['registration-webapi-service.fiap-contacts.svc.cluster.local:81']
 
       - job_name: 'modification-webapi-service'
         static_configs:
-          - targets: ['modification-webapi-service.default.svc.cluster.local:83']
+          - targets: ['modification-webapi-service.fiap-contacts.svc.cluster.local:83']
 
       - job_name: 'termination-webapi-service'
         static_configs:
-          - targets: ['termination-webapi-service.default.svc.cluster.local:84']
+          - targets: ['termination-webapi-service.fiap-contacts.svc.cluster.local:84']
