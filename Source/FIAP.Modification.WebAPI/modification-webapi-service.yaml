@@ -2,10 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: modification-webapi-service
+  labels:     
+    monitored: "true"  
 spec:
   type: LoadBalancer  # Ou NodePort, dependendo do ambiente
   selector:
     app: modification-webapi
   ports:
-    - port: 83
+    - name: metrics
+      port: 83
       targetPort: 8081

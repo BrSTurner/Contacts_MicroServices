@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+  namespace: monitoring
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 15s
+      evaluation_interval: 15s
+
+    scrape_configs:
+      - job_name: 'prometheus'
+        static_configs:
+          - targets: ['localhost:9090']
+
+      - job_name: 'inquiry-webapi-service'
+        static_configs:
+          - targets: ['inquiry-webapi-service.default.svc.cluster.local:82']
+
+      - job_name: 'registration-webapi-service'
+        static_configs:
+          - targets: ['registration-webapi-service.default.svc.cluster.local:81']
+
+      - job_name: 'modification-webapi-service'
+        static_configs:
+          - targets: ['modification-webapi-service.default.svc.cluster.local:83']
+
+      - job_name: 'termination-webapi-service'
+        static_configs:
+          - targets: ['termination-webapi-service.default.svc.cluster.local:84']
