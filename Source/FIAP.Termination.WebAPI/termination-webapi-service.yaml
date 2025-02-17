@@ -2,8 +2,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: termination-webapi-service
+  namespace: fiap-contacts
 spec:
-  type: LoadBalancer  # Ou NodePort, dependendo do ambiente
+  type: LoadBalancer
   selector:
     app: termination-webapi
   ports:

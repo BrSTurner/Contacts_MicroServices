@@ -33,8 +33,8 @@ builder.Services.AddMassTransit(x =>
     {
         cfg.Host(builder.Configuration["RABBITMQ_HOST"], config =>
         {
-            config.Username(builder.Configuration.GetSection("RabbitMQ").GetValue<string>("User") ?? string.Empty);
-            config.Password(builder.Configuration.GetSection("RabbitMQ").GetValue<string>("Password") ?? string.Empty);
+            config.Username(builder.Configuration["RABBITMQ_USER"] ?? string.Empty);
+            config.Password(builder.Configuration["RABBITMQ_PASSWORD"] ?? string.Empty);
         });
         cfg.ConfigureEndpoints(context);
     });
@@ -42,7 +42,7 @@ builder.Services.AddMassTransit(x =>
 
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.ListenAnyIP(8082);
+    options.ListenAnyIP(8081);
 });
 
 builder.Services.AddHealthChecks();

@@ -1,4 +1,6 @@
+using FIAP.DatabaseManagement.Context;
 using FIAP.DatabaseManagement.Extensions;
+using FIAP.DatabaseManagement.Migrator;
 using FIAP.DatabaseManagement.WS.Contacts.Consumers;
 using FIAP.DatabaseManagement.WS.Contacts.Workers;
 using FIAP.MessageBus;
@@ -21,8 +23,8 @@ builder.Services.AddMassTransit(x =>
     {
         cfg.Host(builder.Configuration["RABBITMQ_HOST"], config =>
         {
-            config.Username(builder.Configuration.GetSection("RabbitMQ").GetValue<string>("User") ?? string.Empty);
-            config.Password(builder.Configuration.GetSection("RabbitMQ").GetValue<string>("Password") ?? string.Empty);
+            config.Username(builder.Configuration["RABBITMQ_USER"] ?? string.Empty);
+            config.Password(builder.Configuration["RABBITMQ_PASSWORD"] ?? string.Empty);
         });
 
         cfg.ConfigureEndpoints(context);
@@ -30,8 +32,11 @@ builder.Services.AddMassTransit(x =>
 });
 
 builder.Services.AddSingleton<IMessageBus, MessageBus>();
-builder.Services.AddInfrastructure(builder.Configuration, true);
+builder.Services.AddInfrastructure(builder.Configuration, false);
 builder.Services.AddHostedService<PersistanceWorker>();
 
 var host = builder.Build();
+
+host.MigrateDatabase<FIAPContext>();
+
 host.Run();
