@@ -7,6 +7,7 @@ echo ========================================================
 echo.
 
 kubectl apply -f Source/Kubernetes/namespace.yaml
+kubectl apply -f Source/Kubernetes/monitoring-namespace.yaml
 
 kubectl apply -f Source/Kubernetes/Services/services-configmap.yaml
 kubectl apply -f Source/Kubernetes/Services/services-secret.yaml
@@ -17,6 +18,13 @@ kubectl apply -f Source/Kubernetes/PostgreSQL/postgresql-pv.yaml
 kubectl apply -f Source/Kubernetes/PostgreSQL/postgresql-pvc.yaml
 kubectl apply -f Source/Kubernetes/PostgreSQL/postgresql-deployment.yaml
 kubectl apply -f Source/Kubernetes/PostgreSQL/postgresql-service.yaml
+
+kubectl apply -f Source/Prometheus/prometheus-clusterrole.yaml
+kubectl apply -f Source/Prometheus/prometheus-clusterrolebinding.yaml
+kubectl apply -f Source/Prometheus/prometheus-config.yaml
+kubectl apply -f Source/Prometheus/prometheus-deployment.yaml
+kubectl apply -f Source/Prometheus/prometheus-service.yaml
+kubectl apply -f Source/Prometheus/prometheus-serviceaccount.yaml
 
 kubectl apply -f Source/Kubernetes/RabbitMQ/rabbitmq-deployment.yaml
 kubectl apply -f Source/Kubernetes/RabbitMQ/rabbitmq-service.yaml

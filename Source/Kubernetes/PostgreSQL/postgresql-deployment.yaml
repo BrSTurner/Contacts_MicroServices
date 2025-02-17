@@ -42,14 +42,19 @@ spec:
           readinessProbe:
             exec:
               command:
-              - psql
-              - -w
-              - -U
-              - admin
-              - -d
-              - postgres
+              - /bin/sh
               - -c
-              - "SELECT 1"
+              - "pg_isready -h localhost -p 5432"
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
+          livenessProbe:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - "pg_isready -h localhost -p 5432"
             initialDelaySeconds: 10
             periodSeconds: 15
             timeoutSeconds: 5
